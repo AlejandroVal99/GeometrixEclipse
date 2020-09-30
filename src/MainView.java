@@ -7,7 +7,10 @@ public class MainView extends PApplet {
 		PApplet.main("MainView");
 	}
 	
-	public void setting() {
+	
+	
+	public void settings() {
+		size(1280,720);
 		
 	}
 	
