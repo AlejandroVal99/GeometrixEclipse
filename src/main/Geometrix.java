@@ -1,0 +1,27 @@
+package main;
+import processing.core.PApplet;
+
+public class Geometrix extends PApplet {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		PApplet.main("main.Main");
+	}
+	
+	
+	
+	public void settings() {
+		size(1280,720);
+		
+	}
+	
+	public void setup() {
+		
+		
+	}
+	
+	public void draw() {
+		
+		
+	}
+}
