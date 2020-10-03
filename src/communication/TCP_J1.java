@@ -62,7 +62,7 @@ public void setObserver(OnMessageListener observer) {
 			while(true) {
 				String line = reader.readLine();
 				System.out.println("Recibido: " + line);
-				observer.OnMessage(line);
+				//observer.OnMessage(line);
 				//Solo toma el tipo
 				Generic generic = gson.fromJson(line, Generic.class);
 				
