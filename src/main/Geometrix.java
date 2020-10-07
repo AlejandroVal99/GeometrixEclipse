@@ -12,7 +12,8 @@ public class Geometrix extends PApplet {
 	
 	private int screen;
 	private GeometrixController controller;
-	private InetAddress ip;
+	//private InetAddress inetAddress;
+	String ip;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -22,26 +23,38 @@ public class Geometrix extends PApplet {
 	
 	
 	public void settings() {
-		size(1280,600);
-		
-		
-		
+		size(1280,600);	
 	}
 	
 	public void setup() {
 		screen = 0;
-		controller = new GeometrixController(this);
+		new Thread(
+				
+				()->{
+					
+					while(true) {
+					
+						controller = new GeometrixController(this);
+					}
+				}
+				
+				).start();
+		
+		InetAddress inetAddress;
 		try {
-			ip = InetAddress.getLocalHost();
-			System.out.println(ip.toString());
+			inetAddress = InetAddress.getLocalHost();
+			ip=inetAddress.getHostAddress();
+
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 	}
 	
 	public void draw() {
-		
+		background(0);
 		text(ip.toString(), 250, 250);
 	}
 }
