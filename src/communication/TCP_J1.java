@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import events.OnMessageListener;
 import model.Generic;
+import model.Shoot;
 
 public class TCP_J1 extends Thread{
 	
@@ -71,9 +72,10 @@ public void setObserver(OnMessageListener observer) {
 				
 				switch(generic.getType()) {
 				
-				case "Disparo":
+				case "Shoot":
 					
-					observer.OnShootReceived("player1");
+					Shoot tempShoot=gson.fromJson(line, Shoot.class);
+					observer.OnShootReceived("player1",tempShoot.isSuperShoot());
 					
 					break;
 				

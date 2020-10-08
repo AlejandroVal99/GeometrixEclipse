@@ -32,7 +32,7 @@ public class GeometrixController implements OnMessageListener{
 
 
 	@Override
-	public void OnShootReceived(String player) {
+	public void OnShootReceived(String player,boolean superShoot) {
 		
 		switch(player) {
 		
@@ -41,8 +41,16 @@ public class GeometrixController implements OnMessageListener{
 			break;
 			
 		case "player2":
+			if(superShoot) {
+				
+				System.out.println("super Disparo el 2");	
+			}
+			else {
+				
+				System.out.println("Disparo el 2");
+
+			}
 			
-			System.out.println("Disparo el 2");
 
 			break;
 		}
