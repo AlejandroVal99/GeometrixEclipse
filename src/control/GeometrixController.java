@@ -19,6 +19,7 @@ public class GeometrixController implements OnMessageListener{
 		this.app = app;
 		tcpJ1 = TCP_J1.getInstance();
 		tcpJ2 = TCP_J2.getInstance();
+		tcpJ2.setObserver(this);
 		
 	}
 	
@@ -36,9 +37,13 @@ public class GeometrixController implements OnMessageListener{
 		switch(player) {
 		
 		case "player1":
+			System.out.println("Disparo el 1");
 			break;
 			
 		case "player2":
+			
+			System.out.println("Disparo el 2");
+
 			break;
 		}
 		

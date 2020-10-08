@@ -30,7 +30,7 @@ public class TCP_J2 extends Thread{
 	public static TCP_J2 getInstance() {
 		if(instanceJ2 == null) {
 			instanceJ2 = new TCP_J2();
-			instanceJ2.run();
+			instanceJ2.start();
 		}
 		return instanceJ2;
 	}
@@ -62,6 +62,7 @@ public class TCP_J2 extends Thread{
 				observer.OnMessage(line);
 				
 				Generic generic = gson.fromJson(line, Generic.class);
+				System.out.println(generic.getType());
 				
 				switch(generic.getType()) {
 				
@@ -70,8 +71,17 @@ public class TCP_J2 extends Thread{
 					observer.OnShootReceived("player2");
 					
 					break;
+				case "User":
+					
+					System.out.println("User");
+					break;
+					
+				
 					
 				}
+				
+				
+				
 			}
 			
 			
