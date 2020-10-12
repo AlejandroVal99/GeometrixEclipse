@@ -6,8 +6,9 @@ public class Ball {
 	
 	private int posx, posy;
 	private PApplet app;
+	private float speed=0.01f;
 	
-	public Ball(PApplet app, int posx, int posy) {
+	public Ball(PApplet app,int posx,int posy) {
 		this.app = app;
 		this.posx = posx;
 		this.posy = posy;
@@ -17,28 +18,26 @@ public class Ball {
 		
 		if(direction == 2) {
 
-			this.posy -= 5;
+			this.posy -=speed;
 			System.out.println("posy " + posy);
 				
 		}else if(direction == -2) {
-			this.posy += 5;
+			this.posy += speed;
 			System.out.println("posy " + posy);
 		
 		}else if(direction ==1) {
 			
-			this.posx += 5;
+			this.posx += speed;
 			System.out.println("posx " + posx);
 			
 		}else if(direction == -1) {
-			this.posx -= 5;
+			this.posx -= speed;
 			System.out.println("posx " + posx);
 		}
 	}
 	
-	public void pintarBolita(int posx, int posy) {
+	public void pintarBolita() {
 		app.fill(255,0,0);
-		this.posx = posx;
-		this.posy = posy;
 		app.ellipse(posx, posy, 50, 50);
 	}
 

@@ -1,9 +1,12 @@
 package control;
+import com.google.gson.Gson;
+
 import communication.TCP_J1;
 import communication.TCP_J2;
 import events.OnMessageListener;
 import model.Ball;
 import model.Direction;
+import model.Vibration;
 import processing.core.PApplet;
 import processing.core.PImage;
 import view.player.Player;
@@ -19,6 +22,7 @@ public class GeometrixController implements OnMessageListener{
 	private Player p2;
 	private TCP_J1 tcpJ1;
 	private TCP_J2 tcpJ2;
+	private Gson gson;
 	
 	public GeometrixController(PApplet app) {
 		
@@ -26,7 +30,8 @@ public class GeometrixController implements OnMessageListener{
 		tcpJ1 = TCP_J1.getInstance();
 		tcpJ2 = TCP_J2.getInstance();
 		tcpJ2.setObserver(this);
-		ball = new Ball(app, 250, 350);
+		ball = new Ball(app,200,200);
+		gson= new Gson();
 		
 	}
 	
@@ -64,23 +69,28 @@ public class GeometrixController implements OnMessageListener{
 		
 	}
 	
-	public void moverBola(int letra) {
-		ball.moverBolita(letra);
-	}
-
+	
 
 	@Override
 	public void OnDirectionReceived(String player, Direction dir) {
-		if(ball != null) {
+		
 			ball.moverBolita(dir.getDirection());
-		}
+			System.out.println(dir.getDirection());
 		
 			
 	}
 	
 	
-	public void pintarBall(int posx, int posy) {
-		ball.pintarBolita(posx,posy);
+	public void pintarBall() {
+		ball.pintarBolita();
+	}
+	
+	public void Impact() {
+		
+		Vibration vibration= new Vibration(true);
+		String message= gson.toJson(vibration);
+		tcpJ2.sendMessage(message);
+		
 	}
 
 }

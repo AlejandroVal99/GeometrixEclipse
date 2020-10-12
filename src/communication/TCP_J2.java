@@ -60,11 +60,11 @@ public class TCP_J2 extends Thread{
 			Gson gson = new Gson();
 			while(true) {
 				String line = reader.readLine();
-				System.out.println("Recibido: " + line);
+				//System.out.println("Recibido: " + line);
 				observer.OnMessage(line);
 				
 				Generic generic = gson.fromJson(line, Generic.class);
-				System.out.println(generic.getType());
+				//System.out.println(generic.getType());
 				
 				switch(generic.getType()) {
 				

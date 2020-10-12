@@ -30,21 +30,9 @@ public class Geometrix extends PApplet {
 	
 	public void setup() {
 		screen = 0;
-		//font = CreateFont("../resources/font/spaceage.ttf");
-		
-		new Thread(
-				
-				()->{
+		//font = CreateFont("../resources/font/spaceage.ttf");		
+		controller = new GeometrixController(this);
 					
-					while(true) {
-					
-						controller = new GeometrixController(this);
-						//controller.pintarBall();
-					}
-				}
-				
-				).start();
-		
 		InetAddress inetAddress;
 		try {
 			inetAddress = InetAddress.getLocalHost();
@@ -62,11 +50,12 @@ public class Geometrix extends PApplet {
 		background(0);
 		text(ip.toString(), 250, 250);
 		
-		controller.pintarBall(300,300);
+		controller.pintarBall();
 		
 	}
 	
-	/*public void mousePressed() {
-		controller.moverBola(1);
-	}*/
+	public void mousePressed() {
+
+	controller.Impact();
+	}
 }
