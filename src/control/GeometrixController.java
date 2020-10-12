@@ -6,6 +6,7 @@ import communication.TCP_J2;
 import events.OnMessageListener;
 import model.Ball;
 import model.Direction;
+import model.User;
 import model.Vibration;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -95,6 +96,16 @@ public class GeometrixController implements OnMessageListener{
 
 	@Override
 	public void PlayerConnected(String player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+
+
+	@Override
+	public void OnUserReceived(String player, User user) {
 		// TODO Auto-generated method stub
 		
 	}

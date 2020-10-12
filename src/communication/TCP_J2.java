@@ -15,6 +15,7 @@ import events.OnMessageListener;
 import model.Direction;
 import model.Generic;
 import model.Shoot;
+import model.User;
 
 public class TCP_J2 extends Thread{
 
@@ -78,7 +79,8 @@ public class TCP_J2 extends Thread{
 					break;
 				case "User":
 					
-					System.out.println("User");
+					User user = gson.fromJson(line,User.class);
+					observer.OnUserReceived("Player2", user);
 					break;
 					
 				case "Direction":
