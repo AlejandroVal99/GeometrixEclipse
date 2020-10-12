@@ -36,11 +36,7 @@ public class GeometrixController implements OnMessageListener{
 	}
 	
 
-	@Override
-	public void OnMessage(String msg) {
-		
-		
-	}
+	
 
 
 	@Override
@@ -90,6 +86,16 @@ public class GeometrixController implements OnMessageListener{
 		Vibration vibration= new Vibration(true);
 		String message= gson.toJson(vibration);
 		tcpJ2.sendMessage(message);
+		
+	}
+
+
+
+
+
+	@Override
+	public void PlayerConnected(String player) {
+		// TODO Auto-generated method stub
 		
 	}
 

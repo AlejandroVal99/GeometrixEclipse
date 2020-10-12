@@ -4,7 +4,7 @@ import model.Direction;
 
 public interface OnMessageListener {
 	
-	void OnMessage(String msg);
+	void PlayerConnected(String player);
 	
 	void OnShootReceived(String player,boolean superShoot);
 	

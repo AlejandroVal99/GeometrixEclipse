@@ -47,6 +47,8 @@ public class TCP_J2 extends Thread{
 			ServerSocket server = new ServerSocket(5000);
 			System.out.println("Esperando conexion");
 			socket = server.accept();
+			observer.PlayerConnected("Player2");
+			
 			System.out.println("Cliente conectado");
 			
 			InputStream is = socket.getInputStream();
@@ -61,7 +63,7 @@ public class TCP_J2 extends Thread{
 			while(true) {
 				String line = reader.readLine();
 				//System.out.println("Recibido: " + line);
-				observer.OnMessage(line);
+				//observer.OnMessage(line);
 				
 				Generic generic = gson.fromJson(line, Generic.class);
 				//System.out.println(generic.getType());
