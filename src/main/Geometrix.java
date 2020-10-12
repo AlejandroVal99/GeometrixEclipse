@@ -6,12 +6,14 @@ import java.net.UnknownHostException;
 
 import control.GeometrixController;
 import processing.core.PApplet;
+import processing.core.PFont;
 
 public class Geometrix extends PApplet {
 
 	
 	private int screen;
 	private GeometrixController controller;
+	private PFont font;
 	//private InetAddress inetAddress;
 	String ip;
 	
@@ -23,11 +25,13 @@ public class Geometrix extends PApplet {
 	
 	
 	public void settings() {
-		size(1280,600);	
+		size(1280,720);	
 	}
 	
 	public void setup() {
 		screen = 0;
+		//font = CreateFont("../resources/font/spaceage.ttf");
+		
 		new Thread(
 				
 				()->{
@@ -35,6 +39,7 @@ public class Geometrix extends PApplet {
 					while(true) {
 					
 						controller = new GeometrixController(this);
+						//controller.pintarBall();
 					}
 				}
 				
@@ -56,5 +61,12 @@ public class Geometrix extends PApplet {
 	public void draw() {
 		background(0);
 		text(ip.toString(), 250, 250);
+		
+		controller.pintarBall(300,300);
+		
 	}
+	
+	/*public void mousePressed() {
+		controller.moverBola(1);
+	}*/
 }

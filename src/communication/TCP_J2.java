@@ -12,6 +12,7 @@ import java.net.Socket;
 import com.google.gson.Gson;
 
 import events.OnMessageListener;
+import model.Direction;
 import model.Generic;
 import model.Shoot;
 
@@ -77,6 +78,14 @@ public class TCP_J2 extends Thread{
 					
 					System.out.println("User");
 					break;
+					
+				case "Direction":
+					
+					Direction dir = gson.fromJson(line, Direction.class);
+					observer.OnDirectionReceived("player2", dir);
+					
+					break;
+				
 					
 				
 					
