@@ -1,18 +1,15 @@
 package view.spaceship;
+
+import processing.core.PApplet;
+import processing.core.PImage;
+
 public class Triangletrix extends SpaceShip{
-	
-	private String type= "Triangletrix";
-	public Triangletrix(int posx, int posy) {
-		super(posy, posy);
-		
+
+	public Triangletrix(boolean player, String nickName, PImage inGame, PImage inSelect, PApplet app) {
+		super(player, nickName, inGame, inSelect, app);
+		// TODO Auto-generated constructor stub
 	}
-	
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
+
 	
 	
 }
