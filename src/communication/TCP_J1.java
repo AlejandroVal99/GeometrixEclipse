@@ -79,19 +79,19 @@ public class TCP_J1 extends Thread {
 				case "Shoot":
 
 					Shoot tempShoot = gson.fromJson(line, Shoot.class);
-					observer.OnShootReceived("player2", tempShoot.isSuperShoot());
+					observer.OnShootReceived("player1", tempShoot.isSuperShoot());
 
 					break;
 				case "User":
 
 					User user = gson.fromJson(line, User.class);
-					observer.OnUserReceived("Player2", user);
+					observer.OnUserReceived("player1", user);
 					break;
 
 				case "Direction":
 
 					Direction dir = gson.fromJson(line, Direction.class);
-					observer.OnDirectionReceived("player2", dir);
+					observer.OnDirectionReceived("player1", dir);
 
 					break;
 

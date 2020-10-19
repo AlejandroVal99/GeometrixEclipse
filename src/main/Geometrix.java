@@ -174,6 +174,6 @@ public class Geometrix extends PApplet {
 	}
 	public void setConnectionsJ2() {
 		connectionJ2 = true;
-		connectionJ1 = true;
+		
 	}
 }

@@ -80,7 +80,7 @@ public class TCP_J2 extends Thread{
 				case "User":
 					
 					User user = gson.fromJson(line,User.class);
-					observer.OnUserReceived("Player2", user);
+					observer.OnUserReceived("player2", user);
 					break;
 					
 				case "Direction":
