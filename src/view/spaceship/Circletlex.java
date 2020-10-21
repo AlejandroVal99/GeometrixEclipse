@@ -5,10 +5,14 @@ import processing.core.PImage;
 
 public class Circletlex extends SpaceShip{
 
-	public Circletlex(boolean player, String nickName, PImage inGame, PApplet app) {
-		super(player, nickName, inGame, app);
+	public Circletlex(boolean player, String nickName, PImage inGame, PApplet app, int vida, PImage mybullet) {
+		super(player, nickName, inGame, app, vida, mybullet);
 		// TODO Auto-generated constructor stub
 	}
+
+
+
+	
 
  
 

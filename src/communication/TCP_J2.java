@@ -45,7 +45,7 @@ public class TCP_J2 extends Thread{
 	public void run() {
 		
 		try {
-			ServerSocket server = new ServerSocket(5000);
+			ServerSocket server = new ServerSocket(5001);
 			System.out.println("Esperando conexion");
 			socket = server.accept();
 			observer.PlayerConnected("Player2");

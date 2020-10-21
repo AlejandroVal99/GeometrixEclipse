@@ -87,16 +87,20 @@ public class Geometrix extends PApplet {
 			if(connectionJ2) {
 				image(connectJ2,0,0);
 			}
-			if(connectionJ1 && connectionJ2) {
+			if(connectionJ1 /*&& connectionJ2*/) {
 				image(connectBtn,0,0);
 				if(feedConnection) {
 					image(connectFeedBtn,0,0);
 				}
+				
+				
 			}
 			
 			break;
+			
 		case 3:
 			image(gameScreen,0,0);
+			controller.drawSpace();
 			
 			break;
 		case 4:
@@ -108,12 +112,13 @@ public class Geometrix extends PApplet {
 		//background(0);
 		
 		
-		controller.pintarBall();
+	
 		
 	}
 	
 	public void mousePressed() {
-		System.out.println(" X "+mouseX+" Y "+mouseY);
+		
+		//System.out.println(" X "+mouseX+" Y "+mouseY);
 		
 		switch(screen) {
 		case 0:
@@ -122,9 +127,12 @@ public class Geometrix extends PApplet {
 			}
 			break;
 		case 2:
-			if(connectionJ1 && connectionJ2) {
+			if(connectionJ1 /*&& connectionJ2*/) {
 				if(mouseX > 510 && mouseX < 769 && mouseY > 502 && mouseY < 570) {
 					screen = 3;
+					//System.out.println("pantalla 3");
+					controller.SendConfirmation();
+					
 				}
 			}
 			break;

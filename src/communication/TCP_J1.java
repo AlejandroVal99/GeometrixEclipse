@@ -48,10 +48,10 @@ public class TCP_J1 extends Thread {
 	public void run() {
 
 		try {
-			ServerSocket server = new ServerSocket(5001);
+			ServerSocket server = new ServerSocket(5000);
 			System.out.println("Esperando conexion");
 			socket = server.accept();
-			observer.PlayerConnected("Player2");
+			observer.PlayerConnected("Player1");
 			System.out.println("Cliente conectado");
 
 			InputStream is = socket.getInputStream();
@@ -67,7 +67,7 @@ public class TCP_J1 extends Thread {
 			while (true) {
 				String line = reader.readLine();
 
-				System.out.println("Recibido: " + line);
+				//System.out.println("Recibido: " + line);
 
 				// observer.OnMessage(line);
 				// Solo toma el tipo

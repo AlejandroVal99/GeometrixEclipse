@@ -1,8 +1,5 @@
 package view.spaceship;
 import java.util.ArrayList;
-
-import javax.print.attribute.standard.MediaSize.NA;
-
 import processing.core.PApplet;
 import processing.core.PImage;
 import view.bullet.Bullet;
@@ -26,12 +23,15 @@ public abstract class SpaceShip {
 	
 	//0.08 caso default
 	
-	public SpaceShip(boolean player,String nickName, PImage inGame, PApplet app) {
+	public SpaceShip(boolean player,String nickName, PImage inGame, PApplet app,int vida,PImage mybullet) {
 		
 		this.player = player;
 		this.app = app;
+		this.myBullet=mybullet;
 		this.inGame = inGame;
 		this.inSelect = inSelect;
+		this.nickName = nickName;
+		this.vida=vida;
 		bullets = new ArrayList<Bullet>();
 		vidaTotal = vida;
 		posy = app.height/2;
@@ -67,14 +67,22 @@ public abstract class SpaceShip {
 		posy = app.lerp(posy,nPosy,(float) 0.08);
 		app.image(inGame, posx, posy);
 		
+		app.textSize(25);
+		
 		if(player) {
-			app.text(nickName,20 , 20);
+			
+			app.text(nickName,20 , 25);
 			app.rect(20,40,(float)((vida*158)/vidaTotal),7);
-		}else {
+			
+		}/*else {
 			app.text(nickName,1250,20);
 			app.rect(1250-(float)((vida*158)/vidaTotal),40,(float)((vida*158)/vidaTotal),7);
 		}
-		
+		*/
+		for(int i=0;i<bullets.size();i++) {
+			
+			bullets.get(i).DrawBullet(player);
+		}
 		
 	}
 	public void moveSpaceship(int direc) {
@@ -83,24 +91,24 @@ public abstract class SpaceShip {
 		case 2:
 
 			nPosy =this.posy -=speed;
-			System.out.println("posy " + posy);
+			//System.out.println("posy " + posy);
 		break;		
 		case -2: 
 			nPosy = this.posy += speed;
-			System.out.println("posy " + posy);
+			//System.out.println("posy " + posy);
 		break;
 		case 1:
 			
 			nPosx =this.posx += speed;
-			System.out.println("posx " + posx);
+			//System.out.println("posx " + posx);
 		break;	
 		case -1:
 			nPosx = this.posx -= speed;
-			System.out.println("posx " + posx);
+			//System.out.println("posx " + posx);
 		break;
 		
 		default:
-			System.out.println("default");
+			//System.out.println("default");
 			break;
 		
 		}
@@ -108,7 +116,8 @@ public abstract class SpaceShip {
 	
 	public void newBullet() {
 		
-		
+		Bullet bullet = new Bullet(this.posx+inGame.width,this.posy+(inGame.height/2),this.myBullet,app);
+		bullets.add(bullet);
 	}
 
 
@@ -126,14 +135,9 @@ public abstract class SpaceShip {
 	}
 
 
-
-
 	public int getVida() {
 		return vida;
 	}
-
-
-
 
 	public void setVida(int vida) {
 		this.vida = vida;
@@ -306,5 +310,20 @@ public abstract class SpaceShip {
 	public void setSpeed(float speed) {
 		this.speed = speed;
 	}
+
+
+
+
+	public PImage getMyBullet() {
+		return myBullet;
+	}
+
+
+
+
+	public void setMyBullet(PImage myBullet) {
+		this.myBullet = myBullet;
+	}
+	
 	
 }
