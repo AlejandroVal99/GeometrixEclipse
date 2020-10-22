@@ -1,4 +1,5 @@
 package view.spaceship;
+import java.sql.Time;
 import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -15,11 +16,12 @@ public abstract class SpaceShip {
 	protected float posy;
 	protected float nPosx;
 	protected float nPosy;
-	
 	protected boolean player;//True player 1, false player2
 	protected ArrayList<Bullet> bullets;
 	protected PImage inGame,inSelect,myBullet;
 	protected float speed;
+	protected float fireRate;
+	protected float nextFire;
 	
 	//0.08 caso default
 	
@@ -37,7 +39,8 @@ public abstract class SpaceShip {
 		posy = app.height/2;
 		chagePosx();
 		speed = 10;
-			
+		nextFire=0;	
+		fireRate=0;
 	}
 	
 	
@@ -65,6 +68,11 @@ public abstract class SpaceShip {
 		posx = app.lerp(posx, nPosx, (float) 0.08);
 		posy = app.lerp(posy,nPosy,(float) 0.08);
 		app.image(inGame, posx, posy);
+		
+		if(app.frameCount%10==0) {	
+			nextFire--; 
+		
+		}
 		
 		app.textSize(25);
 		
@@ -115,8 +123,16 @@ public abstract class SpaceShip {
 	
 	public void newBullet() {
 		
-		Bullet bullet = new Bullet(this.posx+inGame.width,this.posy+(inGame.height/2),this.myBullet,app);
-		bullets.add(bullet);
+		
+		
+		if(nextFire<=0) {
+			Bullet bullet = new Bullet(this.posx+inGame.width,this.posy+(inGame.height/2),this.myBullet,app);
+			bullets.add(bullet);
+			nextFire=fireRate;
+			
+		}
+		
+		System.out.println(nextFire);
 	}
 
 

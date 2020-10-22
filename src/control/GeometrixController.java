@@ -155,7 +155,7 @@ public class GeometrixController implements OnMessageListener {
 		case "player2":
 			switch(user.getTspaceship()) {
 			case 0:
-				player2 = new Player(user.getName(), new Triangletrix(false,user.getName(),p2imageN0,app,80,bulletOrange2));
+				player2 = new Player(user.getName(), new Triangletrix(false,user.getName(),p2imageN0,app,80,blueBullet2));
 				break;
 			case 1:
 				player2 = new Player(user.getName(), new Diamondrox(false,user.getName(),p2imageN1,app,100,bulletOrange2));
