@@ -96,12 +96,7 @@ public class Geometrix extends PApplet {
 				image(connectJ2,0,0);
 			}
 			if(connectionJ1 /*&& connectionJ2*/) {
-				image(connectBtn,0,0);
-				if(feedConnection) {
-					image(connectFeedBtn,0,0);
-				}
-				
-				
+				screen++;	
 			}
 			
 			break;
@@ -138,7 +133,7 @@ public class Geometrix extends PApplet {
 	public void mousePressed() {
 		
 		//System.out.println(" X "+mouseX+" Y "+mouseY);
-		screen ++;
+		//screen ++;
 		
 		switch(screen) {
 		case 0:
@@ -157,6 +152,9 @@ public class Geometrix extends PApplet {
 			}
 			break;
 		case 3:
+			
+			screen=5;
+			controller.SendConfirmation();
 			break;
 		}
 		
