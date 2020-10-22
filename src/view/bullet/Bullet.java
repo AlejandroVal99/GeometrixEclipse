@@ -10,14 +10,16 @@ public class Bullet {
 	private float posx;
 	private float posy;
 	private float speed;
+	private int daño;
 	
-	public Bullet(float posx, float posy, PImage shoot,PApplet app) {
+	public Bullet(float posx, float posy, PImage shoot,PApplet app,int daño) {
 		
 		this.posx = posx;
 		this.posy = posy;
 		this.shoot = shoot;
 		this.app = app;
 		speed=5;
+		this.daño=daño;
 	}
 	
 	
@@ -76,6 +78,17 @@ public class Bullet {
 	public void setSpeed(float speed) {
 		this.speed = speed;
 	}
+
+
+	public int getDaño() {
+		return daño;
+	}
+
+
+	public void setDaño(int daño) {
+		this.daño = daño;
+	}
+	
 	
 	 
 

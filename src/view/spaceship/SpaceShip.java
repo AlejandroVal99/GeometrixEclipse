@@ -22,12 +22,17 @@ public abstract class SpaceShip {
 	protected float speed;
 	protected float fireRate;
 	protected float nextFire;
+	protected float superRate;
+	protected float nextSuper;
+	protected PImage superShoot;
+	
 	
 	//0.08 caso default
 	
-	public SpaceShip(boolean player,String nickName, PImage inGame, PApplet app,int vida,PImage mybullet) {
+	public SpaceShip(boolean player,String nickName, PImage inGame, PApplet app,int vida,PImage mybullet,PImage superShoot) {
 		
 		this.player = player;
+		this.superShoot=superShoot;
 		this.app = app;
 		this.myBullet=mybullet;
 		this.inGame = inGame;
@@ -41,6 +46,10 @@ public abstract class SpaceShip {
 		speed = 10;
 		nextFire=0;	
 		fireRate=0;
+		nextSuper=0;
+		superRate=0;
+		dano=0;
+		danoSuper=0;
 	}
 	
 	
@@ -72,6 +81,12 @@ public abstract class SpaceShip {
 		if(app.frameCount%10==0) {	
 			nextFire--; 
 		
+		}
+		
+		if(app.frameCount%40==0) {
+			
+			nextSuper--;
+			
 		}
 		
 		app.textSize(25);
@@ -121,18 +136,29 @@ public abstract class SpaceShip {
 		}
 	}
 	
-	public void newBullet() {
+	public void newBullet(boolean superShoot) {
 		
+		if(superShoot) {
+			if(nextSuper<=0) {
+			Bullet superBullet = new Bullet(this.posx+inGame.width,this.posy+(inGame.height/2),this.superShoot,app,danoSuper);
+			bullets.add(superBullet);
+			nextSuper=superRate;
+		}
+		}
 		
-		
-		if(nextFire<=0) {
-			Bullet bullet = new Bullet(this.posx+inGame.width,this.posy+(inGame.height/2),this.myBullet,app);
-			bullets.add(bullet);
-			nextFire=fireRate;
+		else {
+			
+			if(nextFire<=0) {
+				Bullet bullet = new Bullet(this.posx+inGame.width,this.posy+(inGame.height/2),this.myBullet,app,dano);
+				bullets.add(bullet);
+				nextFire=fireRate;
+				
+			}
 			
 		}
 		
-		System.out.println(nextFire);
+		
+		
 	}
 
 
