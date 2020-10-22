@@ -1,4 +1,5 @@
 package view.spaceship;
+import java.sql.Time;
 import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -15,17 +16,23 @@ public abstract class SpaceShip {
 	protected float posy;
 	protected float nPosx;
 	protected float nPosy;
-	
 	protected boolean player;//True player 1, false player2
 	protected ArrayList<Bullet> bullets;
 	protected PImage inGame,inSelect,myBullet;
 	protected float speed;
+	protected float fireRate;
+	protected float nextFire;
+	protected float superRate;
+	protected float nextSuper;
+	protected PImage superShoot;
+	
 	
 	//0.08 caso default
 	
-	public SpaceShip(boolean player,String nickName, PImage inGame, PApplet app,int vida,PImage mybullet) {
+	public SpaceShip(boolean player,String nickName, PImage inGame, PApplet app,int vida,PImage mybullet,PImage superShoot) {
 		
 		this.player = player;
+		this.superShoot=superShoot;
 		this.app = app;
 		this.myBullet=mybullet;
 		this.inGame = inGame;
@@ -36,12 +43,14 @@ public abstract class SpaceShip {
 		vidaTotal = vida;
 		posy = app.height/2;
 		chagePosx();
-		speed = 15;
-		
-		dano = 0;
+
+		speed = 10;
+		nextFire=0;	
+		fireRate=0;
+		nextSuper=0;
+		superRate=0;
+		dano=0;
 		danoSuper=0;
-		
-		
 	}
 	
 	
@@ -70,6 +79,17 @@ public abstract class SpaceShip {
 		posy = app.lerp(posy,nPosy,(float) 0.08);
 		app.image(inGame, posx, posy);
 		
+		if(app.frameCount%10==0) {	
+			nextFire--; 
+		
+		}
+		
+		if(app.frameCount%40==0) {
+			
+			nextSuper--;
+			
+		}
+		
 		app.textSize(25);
 		
 		if(player) {
@@ -77,11 +97,11 @@ public abstract class SpaceShip {
 			app.text(nickName,20 , 25);
 			app.rect(20,40,(float)((vida*158)/vidaTotal),7);
 			
-		}/*else {
+		}else {
 			app.text(nickName,1250,20);
 			app.rect(1250-(float)((vida*158)/vidaTotal),40,(float)((vida*158)/vidaTotal),7);
 		}
-		*/
+		
 		for(int i=0;i<bullets.size();i++) {
 			
 			bullets.get(i).DrawBullet(player);
@@ -117,10 +137,29 @@ public abstract class SpaceShip {
 		}
 	}
 	
-	public void newBullet() {
+	public void newBullet(boolean superShoot) {
 		
-		Bullet bullet = new Bullet(this.posx+inGame.width,this.posy+(inGame.height/2),this.myBullet,app);
-		bullets.add(bullet);
+		if(superShoot) {
+			if(nextSuper<=0) {
+			Bullet superBullet = new Bullet(this.posx+inGame.width,this.posy+(inGame.height/2),this.superShoot,app,danoSuper);
+			bullets.add(superBullet);
+			nextSuper=superRate;
+		}
+		}
+		
+		else {
+			
+			if(nextFire<=0) {
+				Bullet bullet = new Bullet(this.posx+inGame.width,this.posy+(inGame.height/2),this.myBullet,app,dano);
+				bullets.add(bullet);
+				nextFire=fireRate;
+				
+			}
+			
+		}
+		
+		
+		
 	}
 
 

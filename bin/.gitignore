@@ -1,8 +1,3 @@
-/communication/
 /control/
-/core.jar
-/events/
-/gson-2.8.6.jar
-/main/
-/model/
 /view/
+/main/
