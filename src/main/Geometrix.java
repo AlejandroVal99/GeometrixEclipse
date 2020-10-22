@@ -12,17 +12,20 @@ import view.player.Player;
 
 public class Geometrix extends PApplet {
 
-	
+	//Screens
 	private int screen;
 	private GeometrixController controller;
 	private PFont font;
 	private boolean continueConnection, connectionJ1, connectionJ2;
 	private boolean feedStart, feedConnection;
+	int tamX;
 	
 	
 	//Imagenes
 	private PImage startScreen, startFeedScreen;
 	private PImage connectScreen,connectJ1,connectJ2,connectBtn,connectFeedBtn;
+	private PImage selectScreen;
+	private PImage instructionsScreen;
 	private PImage gameScreen;
 	private PImage winScreen;
 	//private InetAddress inetAddress;
@@ -44,6 +47,7 @@ public class Geometrix extends PApplet {
 		cargarRecursos();
 		connectionJ1  = false;
 		connectionJ2  = false;
+		tamX = 0;
 		
 		
 		controller = new GeometrixController(this,this);
@@ -66,16 +70,20 @@ public class Geometrix extends PApplet {
 
 
 	public void draw() {
-		
+	
 		switch(screen) {
-		case 0:
+		case 0://Start Screen
 			//scale(-1,0);
 			image(startScreen,0,0);
-			if(feedStart) {
-				image(startFeedScreen,0,0);
+			tamX++;
+			noStroke();
+			fill(158,0,225);
+			rect(width/2-225,450,tamX,50,10);
+			if(frameCount % 450 ==0) {
+				screen=2;
 			}
 			break;
-		case 2:
+		case 2://Conection Screen
 			image(connectScreen,0,0);
 			textFont(font);
 			fill(158,0,225);
@@ -98,12 +106,23 @@ public class Geometrix extends PApplet {
 			
 			break;
 			
-		case 3:
+		case 3://Selection Screen
+			image(selectScreen,0,0);
+			
+			break;
+			
+		case 4://Instructions Screen
+			image(instructionsScreen,0,0);
+			
+			 break;
+			 
+			
+		case 5://Game Screen
 			image(gameScreen,0,0);
 			controller.drawSpace();
 			
 			break;
-		case 4:
+		case 6://Win Screen
 			image(winScreen,0,0);
 			
 			break;
@@ -119,6 +138,7 @@ public class Geometrix extends PApplet {
 	public void mousePressed() {
 		
 		//System.out.println(" X "+mouseX+" Y "+mouseY);
+		screen ++;
 		
 		switch(screen) {
 		case 0:
@@ -173,7 +193,9 @@ public class Geometrix extends PApplet {
 		connectJ2 = loadImage("../resources/images/backgrounds/connectJ2.png");
 		connectBtn = loadImage("../resources/images/backgrounds/connectBtn.png");
 		connectFeedBtn = loadImage("../resources/images/backgrounds/connectFeedBtn.png");
+		selectScreen = loadImage("../resources/images/backgrounds/selectionScreen.png");
 		gameScreen =  loadImage("../resources/images/backgrounds/gameScreen.png");
+		instructionsScreen = loadImage("../resources/images/backgrounds/instructionsScreen.png");
 
 	}
 	

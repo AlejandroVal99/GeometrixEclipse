@@ -38,6 +38,9 @@ public abstract class SpaceShip {
 		chagePosx();
 		speed = 15;
 		
+		dano = 0;
+		danoSuper=0;
+		
 		
 	}
 	

@@ -97,6 +97,10 @@ public class GeometrixController implements OnMessageListener {
 		player1.getShip().drawInGame();
 		//player2.getShip().drawInGame();
 	}
+	
+	public void shootImpact(){
+		
+	}
 
 	
 	public void Impact() {
