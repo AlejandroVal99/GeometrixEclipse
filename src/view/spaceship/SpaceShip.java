@@ -36,9 +36,8 @@ public abstract class SpaceShip {
 		vidaTotal = vida;
 		posy = app.height/2;
 		chagePosx();
-		speed = 15;
-		
-		
+		speed = 10;
+			
 	}
 	
 	
@@ -74,11 +73,11 @@ public abstract class SpaceShip {
 			app.text(nickName,20 , 25);
 			app.rect(20,40,(float)((vida*158)/vidaTotal),7);
 			
-		}/*else {
+		}else {
 			app.text(nickName,1250,20);
 			app.rect(1250-(float)((vida*158)/vidaTotal),40,(float)((vida*158)/vidaTotal),7);
 		}
-		*/
+		
 		for(int i=0;i<bullets.size();i++) {
 			
 			bullets.get(i).DrawBullet(player);

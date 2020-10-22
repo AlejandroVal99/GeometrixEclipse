@@ -23,7 +23,7 @@ public class GeometrixController implements OnMessageListener {
 	private PApplet app;
 	private PImage p1imageN0, p1imageN1,p1imageN2,p1imageN3;
 	private PImage p2imageN0, p2imageN1,p2imageN2,p2imageN3;
-	private PImage bulletOrange1;
+	private PImage bulletOrange,bulletOrange2,blueBullet,blueBullet2,bulletPurple,bulletGreen,bulletGreen2;
 
 	private Player player1, player2;
 
@@ -64,7 +64,7 @@ public class GeometrixController implements OnMessageListener {
 				System.out.println("super Disparo el 2");
 			} else {
 
-				System.out.println("Disparo el 2");
+				player2.getShip().newBullet();
 
 			}
 
@@ -75,7 +75,6 @@ public class GeometrixController implements OnMessageListener {
 
 	@Override
 	public void OnDirectionReceived(String player, Direction dir) {
-
 
 		switch (player) {
 
@@ -103,7 +102,7 @@ public class GeometrixController implements OnMessageListener {
 
 		Vibration vibration = new Vibration(true);
 		String message = gson.toJson(vibration);
-		tcpJ2.sendMessage(message);
+		//tcpJ2.sendMessage(message);
 
 	}
 
@@ -113,11 +112,12 @@ public class GeometrixController implements OnMessageListener {
 		switch (player) {
 		case "Player1":
 			mainView.setConnectionsJ1();
+			mainView.setConnectionsJ2();
+
 			break;
 
 		case "Player2":
-			//mainView.setConnectionsJ2();
-			//mainView.setConnectionsJ1();
+			mainView.setConnectionsJ1();
 			break;
 		}
 
@@ -134,18 +134,18 @@ public class GeometrixController implements OnMessageListener {
 			switch(user.getTspaceship()) {
 			
 			case 0:
-				player1 = new Player(user.getName(), new Triangletrix(true,user.getName(),p1imageN0,app,100,bulletOrange1));
+				player1 = new Player(user.getName(), new Triangletrix(true,user.getName(),p1imageN0,app,100,blueBullet));
 				break;
 			case 1:
-				player1 = new Player(user.getName(), new Diamondrox(true,user.getName(),p1imageN1,app,50,bulletOrange1));
+				player1 = new Player(user.getName(), new Diamondrox(true,user.getName(),p1imageN1,app,50,bulletOrange));
 				
 				
 				break;
 			case 2:
-				player1 = new Player(user.getName(), new Circletlex(true,user.getName(),p1imageN2,app,30,bulletOrange1));
+				player1 = new Player(user.getName(), new Circletlex(true,user.getName(),p1imageN2,app,30,bulletPurple));
 				break;
 			case 3:
-				player1 = new Player(user.getName(), new Squarlux(true,user.getName(),p1imageN3,app,80,bulletOrange1));
+				player1 = new Player(user.getName(), new Squarlux(true,user.getName(),p1imageN3,app,80,bulletGreen));
 				break;
 				
 			}
@@ -155,16 +155,16 @@ public class GeometrixController implements OnMessageListener {
 		case "player2":
 			switch(user.getTspaceship()) {
 			case 0:
-				player2 = new Player(user.getName(), new Triangletrix(false,user.getName(),p2imageN0,app,80,bulletOrange1));
+				player2 = new Player(user.getName(), new Triangletrix(false,user.getName(),p2imageN0,app,80,bulletOrange2));
 				break;
 			case 1:
-				player2 = new Player(user.getName(), new Diamondrox(false,user.getName(),p2imageN1,app,100,bulletOrange1));
+				player2 = new Player(user.getName(), new Diamondrox(false,user.getName(),p2imageN1,app,100,bulletOrange2));
 				break;
 			case 2:
-				player2 = new Player(user.getName(), new Circletlex(false,user.getName(),p2imageN2,app,100,bulletOrange1));
+				player2 = new Player(user.getName(), new Circletlex(false,user.getName(),p2imageN2,app,100,bulletPurple));
 				break;
 			case 3:
-				player2 = new Player(user.getName(), new Squarlux(false,user.getName(),p2imageN3,app,100,bulletOrange1));
+				player2 = new Player(user.getName(), new Squarlux(false,user.getName(),p2imageN3,app,100,bulletGreen2));
 				break;				
 			}
 			break;
@@ -182,9 +182,20 @@ public class GeometrixController implements OnMessageListener {
 		 p2imageN1 = app.loadImage("../resources/images/spaceships/nave1p2.png");
 		 p2imageN2 = app.loadImage("../resources/images/spaceships/nave2p2.png");
 		 p2imageN3 = app.loadImage("../resources/images/spaceships/nave3p2.png");
-		 bulletOrange1 = app.loadImage("../resources/images/bullets/bala_naranja.png");
-		
+		 bulletOrange2 = app.loadImage("../resources/images/bullets/bala_naranja2.png");
+		 bulletOrange = app.loadImage("../resources/images/bullets/bala_naranja.png");
+		 blueBullet = app.loadImage("../resources/images/bullets/bala_azul.png");
+		 blueBullet2 = app.loadImage("../resources/images/bullets/bala_azul2.png");
+		 bulletPurple = app.loadImage("../resources/images/bullets/bala_morada.png");
+		 bulletGreen = app.loadImage("../resources/images/bullets/bala_verde.png");
+		 bulletGreen2 = app.loadImage("../resources/images/bullets/bala_verde2.png");
 
+
+		 
+
+		 
+
+		
 	}
 
 	public void SendConfirmation() {
