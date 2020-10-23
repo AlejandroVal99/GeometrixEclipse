@@ -49,50 +49,59 @@ public class TCP_J1 extends Thread {
 
 		try {
 			ServerSocket server = new ServerSocket(5000);
-			System.out.println("Esperando conexion");
-			socket = server.accept();
-			observer.PlayerConnected("Player1");
-			System.out.println("Cliente conectado");
-
-			InputStream is = socket.getInputStream();
-			InputStreamReader isr = new InputStreamReader(is);
-			reader = new BufferedReader(isr);
-
-			OutputStream os = socket.getOutputStream();
-			OutputStreamWriter osw = new OutputStreamWriter(os);
-			writer = new BufferedWriter(osw);
-
-			Gson gson = new Gson();
 
 			while (true) {
-				String line = reader.readLine();
 
-				//System.out.println("Recibido: " + line);
-				// observer.OnMessage(line);
-				// Solo toma el tipo
-				Generic generic = gson.fromJson(line, Generic.class);
+				System.out.println("Esperando conexion");
+				socket = server.accept();
+				observer.PlayerConnected("Player1");
+				System.out.println("Cliente conectado");
 
-				switch (generic.getType()) {
+				InputStream is = socket.getInputStream();
+				InputStreamReader isr = new InputStreamReader(is);
+				reader = new BufferedReader(isr);
 
-				case "Shoot":
+				OutputStream os = socket.getOutputStream();
+				OutputStreamWriter osw = new OutputStreamWriter(os);
+				writer = new BufferedWriter(osw);
 
-					Shoot tempShoot = gson.fromJson(line, Shoot.class);
-					observer.OnShootReceived("player1", tempShoot.isSuperShoot());
+				Gson gson = new Gson();
 
-					break;
-				case "User":
+				while (true) {
+					
+					String line = reader.readLine();
 
-					User user = gson.fromJson(line, User.class);
-					observer.OnUserReceived("player1", user);
-					break;
+					if (line == null) {
+						
+						break;
+					}
+					// System.out.println("Recibido: " + line);
+					// observer.OnMessage(line);
+					// Solo toma el tipo
+					Generic generic = gson.fromJson(line, Generic.class);
 
-				case "Direction":
+					switch (generic.getType()) {
 
-					Direction dir = gson.fromJson(line, Direction.class);
-					observer.OnDirectionReceived("player1", dir);
+					case "Shoot":
 
-					break;
+						Shoot tempShoot = gson.fromJson(line, Shoot.class);
+						observer.OnShootReceived("player1", tempShoot.isSuperShoot());
 
+						break;
+					case "User":
+
+						User user = gson.fromJson(line, User.class);
+						observer.OnUserReceived("player1", user);
+						break;
+
+					case "Direction":
+
+						Direction dir = gson.fromJson(line, Direction.class);
+						observer.OnDirectionReceived("player1", dir);
+
+						break;
+
+					}
 				}
 
 			}

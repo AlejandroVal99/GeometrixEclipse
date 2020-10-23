@@ -18,7 +18,8 @@ public class Geometrix extends PApplet {
 	private PFont font;
 	private boolean continueConnection, connectionJ1, connectionJ2;
 	private boolean feedStart, feedConnection;
-	int tamX;
+	private int tamX;
+	private int startTime;
 	
 	
 	//Imagenes
@@ -82,6 +83,7 @@ public class Geometrix extends PApplet {
 			if(frameCount % 450 ==0) {
 				screen=2;
 			}
+		
 			break;
 		case 2://Conection Screen
 			image(connectScreen,0,0);
@@ -103,12 +105,18 @@ public class Geometrix extends PApplet {
 			
 		case 3://Selection Screen
 			image(selectScreen,0,0);
-			
+			startTime = millis();
+			controller.drawinSelection();
 			break;
 			
 		case 4://Instructions Screen
 			image(instructionsScreen,0,0);
-			
+			int finishTime = millis();
+			if((finishTime - startTime)>8000) {
+				
+			}
+		 
+	
 			 break;
 			 
 			
@@ -119,7 +127,7 @@ public class Geometrix extends PApplet {
 			break;
 		case 6://Win Screen
 			image(winScreen,0,0);
-			
+			controller.drawWin();
 			break;
 		}
 		
@@ -204,4 +212,9 @@ public class Geometrix extends PApplet {
 		connectionJ2 = true;
 		
 	}
+	
+	public void setScreen(int nScreen) {
+		screen = nScreen;
+	}
+	
 }
