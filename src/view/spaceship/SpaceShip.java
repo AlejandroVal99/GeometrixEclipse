@@ -190,6 +190,12 @@ public abstract class SpaceShip {
 		}
 
 	}
+public void drawWin() {
+		
+		app.image(inSelect, (app.width/2)-(inSelect.width/2), 150);
+		app.text(nickName,(app.width/2)-(inSelect.width/2) , 500);
+
+	}
 
 	public String getNickName() {
 		return nickName;
@@ -311,8 +317,6 @@ public abstract class SpaceShip {
 		this.myBullet = myBullet;
 	}
 
-	public void drawWin() {
-
-	}
+	
 
 }
