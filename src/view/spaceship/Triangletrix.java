@@ -11,6 +11,7 @@ public class Triangletrix extends SpaceShip{
 		superRate=4f;
 		dano=20;
 		danoSuper=50;
+		speed=10;
 	}
 
 	
