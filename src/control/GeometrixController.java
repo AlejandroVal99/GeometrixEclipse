@@ -48,7 +48,6 @@ public class GeometrixController implements OnMessageListener {
 		tcpJ1.setObserver(this);
 		tcpJ2 = TCP_J2.getInstance();
 		tcpJ2.setObserver(this);
-		//ball = new Ball(app,app.width/2,app.height/2);
 		gson = new Gson();
 		cargarRecursos();
 		mainView = geometrix;
@@ -107,8 +106,8 @@ public class GeometrixController implements OnMessageListener {
 	}
 	public void drawSpace() {
 		player1.getShip().drawInGame();
-		//player2.getShip().drawInGame();
-		shootVerif();
+		player2.getShip().drawInGame();
+		shootVerify();
 		winVerif();
 	}
 	
@@ -116,34 +115,37 @@ public class GeometrixController implements OnMessageListener {
 		//Verification de la vida de los usuarios pra pasar a la siguiente pantalla
 		if(player1.getShip().getVida()<= 0 ){
 			
-			winPlayer = true;
+			winPlayer = false;
 			mainView.setScreen(6);
 			
 		}else if(player2.getShip().getVida()<= 0) {
 			
-			winPlayer = false;
+			winPlayer = true;
 			mainView.setScreen(6);
 		}
 		
 	}
 
 	
-	public void shootVerif(){
+	public void shootVerify(){
 		//Verification de impacto y salida del lienzo
 		//Verification shoots player 1
+		
 		
 		for(int p1 = 0; p1<player1.getShip().getBullets().size();p1++) {
 			float posXb =  player1.getShip().getBullets().get(p1).getPosx();
 			float posYb =  player1.getShip().getBullets().get(p1).getPosy();
 			float posXp2 = player2.getShip().getnPosx();
-			float posYp2 = player2.getShip().getnPosy();
+			float posYp2 = player2.getShip().getnPosy()-35;
 			
-			if(app.dist(posXb,posYb,posXp2,posYp2)<15) {
+			if(PApplet.dist(posXb,posYb,posXp2,posYp2)<80) {
 				
 				int danoBullet = player1.getShip().getBullets().get(p1).getDaño();
 				player2.getShip().setVida(danoBullet);
 				player1.getShip().getBullets().remove(p1);
 				Impact(false);
+				System.out.println("entré disparo");
+
 				
 			}
 			if(posXb>=app.width) {
@@ -156,13 +158,15 @@ public class GeometrixController implements OnMessageListener {
 			float posXb =  player2.getShip().getBullets().get(p2).getPosx();
 			float posYb =  player2.getShip().getBullets().get(p2).getPosy();
 			float posXp1 = player1.getShip().getnPosx();
-			float posYp1 = player1.getShip().getnPosy();
-			if(app.dist(posXb,posYb,posXp1,posYp1)<15) {
+			float posYp1 = player1.getShip().getnPosy()-35;
+			if(PApplet.dist(posXb,posYb,posXp1,posYp1)<80) {
 				
-				int danoBullet = player1.getShip().getBullets().get(p2).getDaño();
+				int danoBullet = player2.getShip().getBullets().get(p2).getDaño();
 				player1.getShip().setVida(danoBullet);
 				player2.getShip().getBullets().remove(p2);
 				Impact(true);
+				System.out.println("entré disparo 2 ");
+
 			}
 			
 			if(posXb<=0) {
@@ -178,6 +182,8 @@ public class GeometrixController implements OnMessageListener {
 			Vibration vibration = new Vibration(true);
 			String message = gson.toJson(vibration);
 			tcpJ1.sendMessage(message);
+			
+			System.out.println();
 
 		}else {
 			
@@ -194,12 +200,10 @@ public class GeometrixController implements OnMessageListener {
 		switch (player) {
 		case "Player1":
 			mainView.setConnectionsJ1();
-			mainView.setConnectionsJ2();
-
 			break;
 
 		case "Player2":
-			mainView.setConnectionsJ1();
+			mainView.setConnectionsJ2();
 			break;
 		}
 
@@ -229,8 +233,7 @@ public class GeometrixController implements OnMessageListener {
 			case 3:
 				player1 = new Player(user.getName(), new Squarlux(true,user.getName(),p1imageN3,n3Sel,app,80,bulletGreen,superBulletVerde));
 				break;
-				
-
+			
 			}
 
 			break;
@@ -248,8 +251,7 @@ public class GeometrixController implements OnMessageListener {
 				player2 = new Player(user.getName(), new Circletlex(false,user.getName(),p2imageN2,n2Sel,app,100,bulletPurple,superBulletVerde2));
 				break;
 			case 3:
-				player2 = new Player(user.getName(), new Squarlux(false,user.getName(),p2imageN3,n3Sel,app,100,bulletGreen2,superBulletNaranja2));
-
+				player2 = new Player(user.getName(), new Squarlux(false,user.getName(),p2imageN3,n3Sel,app,100,bulletGreen2,superBulletVerde2));
 				break;				
 			}
 			break;
@@ -296,9 +298,8 @@ public class GeometrixController implements OnMessageListener {
 		Confirmation confirmation = new Confirmation(true);
 		String message = gson.toJson(confirmation);
 		tcpJ1.sendMessage(message);
-		//tcpJ2.sendMessage(message);
-		
-		
+		tcpJ2.sendMessage(message);
+			
 	}
 
 	

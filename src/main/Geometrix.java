@@ -69,7 +69,6 @@ public class Geometrix extends PApplet {
 	
 	
 
-
 	public void draw() {
 	
 		switch(screen) {
@@ -80,7 +79,7 @@ public class Geometrix extends PApplet {
 			noStroke();
 			fill(158,0,225);
 			rect(width/2-225,450,tamX,50,10);
-			if(frameCount % 450 ==0) {
+			if(frameCount % 300 ==0) {
 				screen=2;
 			}
 		
@@ -97,7 +96,7 @@ public class Geometrix extends PApplet {
 			if(connectionJ2) {
 				image(connectJ2,0,0);
 			}
-			if(connectionJ1 /*&& connectionJ2*/) {
+			if(connectionJ1 && connectionJ2) {
 				screen++;	
 			}
 			
@@ -132,10 +131,7 @@ public class Geometrix extends PApplet {
 		}
 		
 		//background(0);
-		
-		
-	
-		
+			
 	}
 	
 	public void mousePressed() {
@@ -159,12 +155,13 @@ public class Geometrix extends PApplet {
 				}
 			}
 			break;
-		case 3:
+		case 4:
 			
 			screen=5;
 			controller.SendConfirmation();
 			break;
 		}
+		
 		
 	//controller.Impact();
 	}
@@ -202,6 +199,7 @@ public class Geometrix extends PApplet {
 		selectScreen = loadImage("../resources/images/backgrounds/selectionScreen.png");
 		gameScreen =  loadImage("../resources/images/backgrounds/gameScreen.png");
 		instructionsScreen = loadImage("../resources/images/backgrounds/instructionsScreen.png");
+		winScreen =  loadImage("../resources/images/backgrounds/selectionScreen.png");
 
 	}
 	

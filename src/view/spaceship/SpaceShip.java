@@ -43,10 +43,9 @@ public abstract class SpaceShip {
 		bullets = new ArrayList<Bullet>();
 		vidaTotal = vida;
 		posy = app.height / 2;
+		nPosy=posy;
 		chagePosx();
-
 		type = "nothing";
-
 		speed = 10;
 		nextFire = 0;
 		fireRate = 0;
@@ -54,20 +53,41 @@ public abstract class SpaceShip {
 		superRate = 0;
 		dano = 0;
 		danoSuper = 0;
+		
 	}
 
 	public void chagePosx() {
 		if (player) {
 			posx = (app.width / 4) * 1;
+			nPosx=posx;
 		} else {
 			posx = (app.width / 4) * 3;
+			nPosx=posx;
 		}
 	}
 
 	public void drawInSelection() {
+		
+		switch (type) {
+		case "tringletrix":
+			app.fill(5,246,246);
+			break;
+		case "cricletrex":
+			app.fill(158,0,255);
+			break;
+		case "diamondrox":
+			app.fill(252,117,57);
+			break;
+		case "squarlux":
+			app.fill(80,252,0);
+			break;
+		}
+		app.image(inSelect, posx-(inSelect.width/2), 185);
+		app.textSize(35);
+		app.text(nickName, posx-(inSelect.width/2), 520);
+		app.textSize(20);
 
-		app.image(inSelect, posx, 185);
-		app.text(nickName, posx, 480);
+		
 
 	}
 
@@ -98,7 +118,7 @@ public abstract class SpaceShip {
 			app.rect(20, 40, (float) ((vida * 158) / vidaTotal), 20, 8);
 
 		} else {
-			app.text(nickName, 1250, 20);
+			app.text(nickName, 1220, 20);
 			app.rect(1250 - (float) ((vida * 158) / vidaTotal), 40, (float) ((vida * 158) / vidaTotal), 20, 8);
 		}
 		drawLifeBars();
@@ -143,22 +163,29 @@ public abstract class SpaceShip {
 
 		switch (direc) {
 		case 2:
-
+			if(nPosy-speed>=0) {
 			nPosy = this.posy -= speed;
 			// System.out.println("posy " + posy);
+			}
 			break;
 		case -2:
+			if(nPosy+speed>app.width) {
 			nPosy = this.posy += speed;
 			// System.out.println("posy " + posy);
+			}
 			break;
 		case 1:
-
+			if(nPosx+speed<app.width) {
 			nPosx = this.posx += speed;
 			// System.out.println("posx " + posx);
+			}
 			break;
 		case -1:
+			
+			if(nPosx-speed>=0) {
 			nPosx = this.posx -= speed;
 			// System.out.println("posx " + posx);
+			}
 			break;
 
 		default:
@@ -212,7 +239,7 @@ public void drawWin() {
 	}
 
 	public void setVida(int vida) {
-		this.vida = vida;
+		this.vida -= vida;
 	}
 
 	public int getVidaTotal() {
