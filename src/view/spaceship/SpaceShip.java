@@ -74,8 +74,8 @@ public abstract class SpaceShip {
 	
 	public void drawInGame() {
 		
-		posx = app.lerp(posx, nPosx, (float) 0.08);
-		posy = app.lerp(posy,nPosy,(float) 0.08);
+		posx = PApplet.lerp(posx, nPosx, 0.02f);
+		posy = PApplet.lerp(posy,nPosy,0.02f);
 		app.image(inGame, posx, posy);
 		
 		if(app.frameCount%10==0) {	
