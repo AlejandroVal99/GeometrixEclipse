@@ -166,16 +166,20 @@ public abstract class SpaceShip {
 			if(nPosy-speed>=0) {
 			nPosy = this.posy -= speed;
 			// System.out.println("posy " + posy);
+			}else {
+			  nPosy = 2;
 			}
 			break;
 		case -2:
-			if(nPosy+speed>app.width) {
+			if(nPosy+speed>app.height-inGame.height) {
 			nPosy = this.posy += speed;
 			// System.out.println("posy " + posy);
+			}else {
+			
 			}
 			break;
 		case 1:
-			if(nPosx+speed<app.width) {
+			if(nPosx+speed<app.width-inGame.width) {
 			nPosx = this.posx += speed;
 			// System.out.println("posx " + posx);
 			}
@@ -185,6 +189,8 @@ public abstract class SpaceShip {
 			if(nPosx-speed>=0) {
 			nPosx = this.posx -= speed;
 			// System.out.println("posx " + posx);
+			}else {
+				nPosx = 2;
 			}
 			break;
 

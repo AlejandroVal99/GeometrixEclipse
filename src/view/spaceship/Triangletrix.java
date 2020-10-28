@@ -11,8 +11,8 @@ public class Triangletrix extends SpaceShip{
 		// TODO Auto-generated constructor stub
 		fireRate=1f;
 		superRate=4f;
-		dano=20;
-		danoSuper=50;
+		dano=10;
+		danoSuper=15;
 
 		speed=10;
 

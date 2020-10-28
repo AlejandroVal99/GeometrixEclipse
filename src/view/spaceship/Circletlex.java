@@ -10,6 +10,8 @@ public class Circletlex extends SpaceShip{
 		super(player, nickName, inGame, inSelection, app, vida, mybullet, superShoot);
 		// TODO Auto-generated constructor stub
 		type = "circletlex";
+		dano=10;
+		danoSuper=15;
 		speed=10;
 	}
 
