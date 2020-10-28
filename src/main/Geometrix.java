@@ -1,14 +1,10 @@
 package main;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-
-
-
 import control.GeometrixController;
 import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;
-import view.player.Player;
 
 public class Geometrix extends PApplet {
 

@@ -26,6 +26,7 @@ public abstract class SpaceShip {
 	protected float nextSuper;
 	protected PImage superShoot;
 	protected String type;
+	//variable disparo
 
 	// 0.08 caso default
 

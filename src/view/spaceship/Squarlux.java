@@ -9,12 +9,12 @@ public class Squarlux extends SpaceShip{
 			PImage mybullet, PImage superShoot) {
 		super(player, nickName, inGame, inSelection, app, vida, mybullet, superShoot);
 		// TODO Auto-generated constructor stub
-		fireRate=1f;
+		fireRate=3f;
 		superRate=4f;
 		dano=10;
 		danoSuper=15;
 		type = "squarlux";
-		speed=10;
+		speed=6;
 	}
 
 	

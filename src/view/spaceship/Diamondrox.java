@@ -9,11 +9,11 @@ public class Diamondrox extends SpaceShip{
 			PImage mybullet, PImage superShoot) {
 		super(player, nickName, inGame, inSelection, app, vida, mybullet, superShoot);
 		// TODO Auto-generated constructor stub
-		fireRate=1f;
-		superRate=4f;
-		dano=10;
-		danoSuper=15;
-		speed=10;
+		fireRate=1;
+		superRate=5f;
+		dano=8;
+		danoSuper=25;
+		speed=9;
 		type = "diamondrox";
 	}
 
