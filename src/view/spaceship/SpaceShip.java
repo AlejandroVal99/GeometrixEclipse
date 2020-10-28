@@ -112,42 +112,49 @@ public abstract class SpaceShip {
 
 		app.textSize(25);
 
-		if (player) {
-
-			app.text(nickName, 20, 25);
-			app.rect(20, 40, (float) ((vida * 158) / vidaTotal), 20, 8);
-
-		} else {
-			app.text(nickName, 1220, 20);
-			app.rect(1250 - (float) ((vida * 158) / vidaTotal), 40, (float) ((vida * 158) / vidaTotal), 20, 8);
-		}
+		
 		drawLifeBars();
 		drawBullets();
 
 	}
 
 	protected void drawLifeBars() {
-		switch (type) {
-		case "tringletrix":
-			app.fill(5,246,246);
-			break;
-		case "cricletrex":
-			app.fill(158,0,255);
-			break;
-		case "diamondrox":
-			app.fill(252,117,57);
-			break;
-		case "squarlux":
-			app.fill(80,252,0);
-			break;
-		}
+		
 		if (player) {
+			switch (type) {
+			case "tringletrix":
+				app.fill(5,246,246);
+				break;
+			case "cricletrex":
+				app.fill(158,0,255);
+				break;
+			case "diamondrox":
+				app.fill(252,117,57);
+				break;
+			case "squarlux":
+				app.fill(80,252,0);
+				break;
+			}
 
 			app.text(nickName, 20, 25);
 			app.rect(20, 40, (float) ((vida * 158) / vidaTotal), 20, 8);
 
 		} else {
-			app.text(nickName, 1250, 20);
+			switch (type) {
+			case "tringletrix":
+				app.fill(5,246,246);
+				break;
+			case "cricletrex":
+				app.fill(158,0,255);
+				break;
+			case "diamondrox":
+				app.fill(252,117,57);
+				break;
+			case "squarlux":
+				app.fill(80,252,0);
+				break;
+			}
+			app.text(nickName, 1100, 20);
 			app.rect(1250 - (float) ((vida * 158) / vidaTotal), 40, (float) ((vida * 158) / vidaTotal), 20, 8);
 		}
 	}
@@ -171,7 +178,7 @@ public abstract class SpaceShip {
 			}
 			break;
 		case -2:
-			if(nPosy+speed>app.height-inGame.height) {
+			if(nPosy+speed<app.height-inGame.height) {
 			nPosy = this.posy += speed;
 			// System.out.println("posy " + posy);
 			}else {
@@ -179,19 +186,32 @@ public abstract class SpaceShip {
 			}
 			break;
 		case 1:
-			if(nPosx+speed<app.width-inGame.width) {
-			nPosx = this.posx += speed;
-			// System.out.println("posx " + posx);
+			if(player) {
+				
+				if(nPosx+speed<app.width/2-inGame.width) {
+					nPosx = this.posx += speed;
+					// System.out.println("posx " + posx);
+				}
+			}else {
+				if(nPosx+speed<app.width-inGame.width) {
+					nPosx = this.posx += speed;
+					// System.out.println("posx " + posx);
+				}
 			}
 			break;
 		case -1:
+		if(player) {
 			
 			if(nPosx-speed>=0) {
-			nPosx = this.posx -= speed;
-			// System.out.println("posx " + posx);
-			}else {
-				nPosx = 2;
+				nPosx = this.posx -= speed;
+				// System.out.println("posx " + posx);
 			}
+		}else {
+			if(nPosx-speed>= app.width/2) {
+				nPosx = this.posx -= speed;
+				// System.out.println("posx " + posx);
+			}
+		}
 			break;
 
 		default:

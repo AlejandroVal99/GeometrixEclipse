@@ -248,7 +248,7 @@ public class GeometrixController implements OnMessageListener {
 				player2 = new Player(user.getName(), new Diamondrox(false,user.getName(),p2imageN1,n1Sel,app,100,bulletOrange2,superBulletNaranja2));
 				break;
 			case 2:
-				player2 = new Player(user.getName(), new Circletlex(false,user.getName(),p2imageN2,n2Sel,app,100,bulletPurple,superBulletVerde2));
+				player2 = new Player(user.getName(), new Circletlex(false,user.getName(),p2imageN2,n2Sel,app,100,bulletPurple,superBulletPurple));
 				break;
 			case 3:
 				player2 = new Player(user.getName(), new Squarlux(false,user.getName(),p2imageN3,n3Sel,app,100,bulletGreen2,superBulletVerde2));

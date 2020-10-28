@@ -75,7 +75,7 @@ public class TCP_J1 extends Thread {
 						
 						break;
 					}
-					// System.out.println("Recibido: " + line);
+					//System.out.println("Recibido: " + line);
 					// observer.OnMessage(line);
 					// Solo toma el tipo
 					Generic generic = gson.fromJson(line, Generic.class);
