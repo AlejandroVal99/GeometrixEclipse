@@ -97,7 +97,7 @@ public class Geometrix extends PApplet {
 			if(connectionJ2) {
 				image(connectJ2,0,0);
 			}
-			if(connectionJ1 /*&& connectionJ2*/) {
+			if(connectionJ1 && connectionJ2) {
 				screen++;	
 			}
 			
@@ -112,11 +112,16 @@ public class Geometrix extends PApplet {
 		case 4://Instructions Screen
 			image(instructionsScreen,0,0);
 			int finishTime = millis();
-			if((finishTime - startTime)>8000) {
-				
+			int seg = 11 - (int) (finishTime - startTime)/1000;
+			textFont(font);
+			fill(158,0,225);
+			text(seg, 594, 235);
+			
+			if((finishTime - startTime)>11000) {
+				controller.SendConfirmation();
+				screen =5;
 			}
 		 
-	
 			 break;
 			 
 			
@@ -162,33 +167,14 @@ public class Geometrix extends PApplet {
 		case 3:
 			
 			screen=5;
-			controller.SendConfirmation();
+			
 			break;
 		}
 		
 	//controller.Impact();
 	}
 	
-	public void mouseMoved() {
-		//System.out.println("entre");
-		switch(screen) {
-		case 0:
-			if(mouseX > 511 && mouseX < 766 && mouseY > 418 && mouseY < 485) {
-				feedStart = true;
-			}else {
-				feedStart = false;
-			}
-			break;
-		case 2:
-			if(mouseX > 510 && mouseX < 769 && mouseY > 502 && mouseY < 570) {
-				feedConnection = true;
-			}else {
-				feedConnection = false;
-			}
-			break;
-		}
-		
-	}
+
 	
 	private void cargarRecursos() {
 		font = createFont("../resources/font/spaceage.ttf",70);		
@@ -202,6 +188,7 @@ public class Geometrix extends PApplet {
 		selectScreen = loadImage("../resources/images/backgrounds/selectionScreen.png");
 		gameScreen =  loadImage("../resources/images/backgrounds/gameScreen.png");
 		instructionsScreen = loadImage("../resources/images/backgrounds/instructionsScreen.png");
+		winScreen = loadImage("../resources/images/backgrounds/winScreen.png");
 
 	}
 	

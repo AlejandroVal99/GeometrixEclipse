@@ -65,6 +65,23 @@ public abstract class SpaceShip {
 	}
 
 	public void drawInSelection() {
+		
+		if (player) {
+			switch (type) {
+			case "tringletrix":
+				app.fill(5,246,246);
+				break;
+			case "cricletrex":
+				app.fill(158,0,255);
+				break;
+			case "diamondrox":
+				app.fill(252,117,57);
+				break;
+			case "squarlux":
+				app.fill(80,252,0);
+				break;
+			}
+		}
 
 		app.image(inSelect, posx, 185);
 		app.text(nickName, posx, 480);
@@ -105,26 +122,48 @@ public abstract class SpaceShip {
 	}
 
 	protected void drawLifeBars() {
-		switch (type) {
-		case "tringletrix":
-			app.fill(5,246,246);
-			break;
-		case "cricletrex":
-			app.fill(158,0,255);
-			break;
-		case "diamondrox":
-			app.fill(252,117,57);
-			break;
-		case "squarlux":
-			app.fill(80,252,0);
-			break;
-		}
+	
 		if (player) {
-
+			switch (type) {
+			case "tringletrix":
+				app.fill(5,246,246);
+				break;
+			case "cricletrex":
+				app.fill(158,0,255);
+				break;
+			case "diamondrox":
+				app.fill(252,117,57);
+				break;
+			case "squarlux":
+				app.fill(80,252,0);
+				break;
+			}
+			if(nextSuper <= 0) {
+				app.ellipse(10, 25, 8, 8);
+			}
+				
 			app.text(nickName, 20, 25);
 			app.rect(20, 40, (float) ((vida * 158) / vidaTotal), 20, 8);
 
 		} else {
+			
+			switch (type) {
+			case "tringletrix":
+				app.fill(5,246,246);
+				break;
+			case "cricletrex":
+				app.fill(158,0,255);
+				break;
+			case "diamondrox":
+				app.fill(252,117,57);
+				break;
+			case "squarlux":
+				app.fill(80,252,0);
+				break;
+			}
+			if(nextSuper <= 0) {
+				app.ellipse(1085, 25, 8, 8);
+			}
 			app.text(nickName, 1250, 20);
 			app.rect(1250 - (float) ((vida * 158) / vidaTotal), 40, (float) ((vida * 158) / vidaTotal), 20, 8);
 		}
