@@ -91,6 +91,24 @@ public abstract class SpaceShip {
 		app.text(nickName, posx-(inSelect.width/2), 520);
 		app.textSize(20);
 
+		if (player) {
+			switch (type) {
+			case "tringletrix":
+				app.fill(5,246,246);
+				break;
+			case "cricletrex":
+				app.fill(158,0,255);
+				break;
+			case "diamondrox":
+				app.fill(252,117,57);
+				break;
+			case "squarlux":
+				app.fill(80,252,0);
+				break;
+			}
+		}
+
+
 		
 
 	}
@@ -123,7 +141,7 @@ public abstract class SpaceShip {
 	}
 
 	protected void drawLifeBars() {
-		
+
 		if (player) {
 			switch (type) {
 			case "tringletrix":
@@ -139,11 +157,15 @@ public abstract class SpaceShip {
 				app.fill(80,252,0);
 				break;
 			}
-
+		
+			if(nextSuper <= 0) {
+				app.ellipse(10, 25, 8, 8);
+			}
 			app.text(nickName, 20, 25);
 			app.rect(20, 40, (float) ((vida * 158) / vidaTotal), 20, 8);
 
-		} else {
+		 }else {
+
 			switch (type) {
 			case "tringletrix":
 				app.fill(5,246,246);
@@ -158,7 +180,13 @@ public abstract class SpaceShip {
 				app.fill(80,252,0);
 				break;
 			}
+
 			app.text(nickName, 1100, 20);
+
+			if(nextSuper <= 0) {
+				app.ellipse(1085, 25, 8, 8);
+			}
+
 			app.rect(1250 - (float) ((vida * 158) / vidaTotal), 40, (float) ((vida * 158) / vidaTotal), 20, 8);
 		}
 	}
