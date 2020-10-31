@@ -1,9 +1,6 @@
 package control;
 
-
-
 import com.google.gson.Gson;
-
 import communication.TCP_J1;
 import communication.TCP_J2;
 import events.OnMessageListener;
@@ -14,6 +11,7 @@ import model.User;
 import model.Vibration;
 import processing.core.PApplet;
 import processing.core.PImage;
+import processing.sound.SoundFile;
 import view.player.Player;
 import view.spaceship.Circletlex;
 import view.spaceship.Diamondrox;
@@ -25,6 +23,8 @@ public class GeometrixController implements OnMessageListener {
 	private PApplet app;
 	private PImage p1imageN0, p1imageN1,p1imageN2,p1imageN3;
 	private PImage p2imageN0, p2imageN1,p2imageN2,p2imageN3;
+	private SoundFile shot1,shot2,shot3,shot4,hit;
+
 
 	private PImage bulletOrange,bulletOrange2,blueBullet,blueBullet2,bulletPurple,bulletGreen
 	,bulletGreen2,superBulletNaranja,superBulletNaranja2,superBulletVerde,superBulletVerde2,superBulletAzul,superBulletAzul2,superBulletPurple;
@@ -192,7 +192,7 @@ public class GeometrixController implements OnMessageListener {
 			tcpJ2.sendMessage(message);
 		}
 		
-		//reproducir sonido de hit 
+		hit.play();
 	}
 
 	@Override
@@ -222,17 +222,17 @@ public class GeometrixController implements OnMessageListener {
 			
 			case 0:
 
-				player1 = new Player(user.getName(), new Triangletrix(true,user.getName(),p1imageN0,n0Sel,app,70,blueBullet,superBulletAzul));
+				player1 = new Player(user.getName(), new Triangletrix(true,user.getName(),p1imageN0,n0Sel,app,70,blueBullet,superBulletAzul,shot1));
 				break;
 			case 1:
-				player1 = new Player(user.getName(), new Diamondrox(true,user.getName(),p1imageN1,n1Sel,app,80,bulletOrange,superBulletNaranja));
+				player1 = new Player(user.getName(), new Diamondrox(true,user.getName(),p1imageN1,n1Sel,app,80,bulletOrange,superBulletNaranja,shot2));
 				
 				break;
 			case 2:
-				player1 = new Player(user.getName(), new Circletlex(true,user.getName(),p1imageN2,n2Sel,app,85,bulletPurple,superBulletPurple));
+				player1 = new Player(user.getName(), new Circletlex(true,user.getName(),p1imageN2,n2Sel,app,85,bulletPurple,superBulletPurple,shot3));
 				break;
 			case 3:
-				player1 = new Player(user.getName(), new Squarlux(true,user.getName(),p1imageN3,n3Sel,app,100,bulletGreen,superBulletVerde));
+				player1 = new Player(user.getName(), new Squarlux(true,user.getName(),p1imageN3,n3Sel,app,100,bulletGreen,superBulletVerde,shot4));
 				break;
 			
 			}
@@ -243,16 +243,16 @@ public class GeometrixController implements OnMessageListener {
 			switch(user.getTspaceship()) {
 			case 0:
 
-				player2 = new Player(user.getName(), new Triangletrix(false,user.getName(),p2imageN0,n0Sel,app,70,blueBullet2,superBulletAzul2));
+				player2 = new Player(user.getName(), new Triangletrix(false,user.getName(),p2imageN0,n0Sel,app,70,blueBullet2,superBulletAzul2,shot1));
 				break;
 			case 1:
-				player2 = new Player(user.getName(), new Diamondrox(false,user.getName(),p2imageN1,n1Sel,app,80,bulletOrange2,superBulletNaranja2));
+				player2 = new Player(user.getName(), new Diamondrox(false,user.getName(),p2imageN1,n1Sel,app,80,bulletOrange2,superBulletNaranja2,shot2));
 				break;
 			case 2:
-				player2 = new Player(user.getName(), new Circletlex(false,user.getName(),p2imageN2,n2Sel,app,85,bulletPurple,superBulletPurple));
+				player2 = new Player(user.getName(), new Circletlex(false,user.getName(),p2imageN2,n2Sel,app,85,bulletPurple,superBulletPurple,shot3));
 				break;
 			case 3:
-				player2 = new Player(user.getName(), new Squarlux(false,user.getName(),p2imageN3,n3Sel,app,100,bulletGreen2,superBulletVerde2));
+				player2 = new Player(user.getName(), new Squarlux(false,user.getName(),p2imageN3,n3Sel,app,100,bulletGreen2,superBulletVerde2,shot4));
 				break;				
 			}
 			break;
@@ -290,6 +290,12 @@ public class GeometrixController implements OnMessageListener {
 		 superBulletAzul = app.loadImage("../resources/images/bullets/superBullets/superBulletAzul.png");
 		 superBulletAzul2 = app.loadImage("../resources/images/bullets/superBullets/superBulletAzul2.png");
 		 superBulletPurple = app.loadImage("../resources/images/bullets/superBullets/superBulletPurple.png");
+		 shot1= new SoundFile(app, "../resources/sounds/shot1.wav");
+		 shot2= new SoundFile(app, "../resources/sounds/shot2.wav");
+		 shot3= new SoundFile(app, "../resources/sounds/shot3.wav");
+		 shot4= new SoundFile(app, "../resources/sounds/shot4.wav");
+		 hit= new SoundFile(app, "../resources/sounds/hitSound.wav");
+		 
 	
 	}
 
@@ -300,7 +306,6 @@ public class GeometrixController implements OnMessageListener {
 		tcpJ1.sendMessage(message);
 		tcpJ2.sendMessage(message);		
 	}
-
 	
 	//Pintar el ganardor
 	public void drawWin() {
