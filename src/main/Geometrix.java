@@ -108,7 +108,7 @@ public class Geometrix extends PApplet {
 			image(instructionsScreen,0,0);
 			int finishTime = millis();
 			if((finishTime - startTime)>8000) {
-				screen = 5;
+				//screen = 5;
 			}
 		 
 	
