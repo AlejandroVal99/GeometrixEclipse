@@ -5,6 +5,7 @@ import control.GeometrixController;
 import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;
+import processing.sound.*;
 
 public class Geometrix extends PApplet {
 
@@ -45,7 +46,6 @@ public class Geometrix extends PApplet {
 		connectionJ1  = false;
 		connectionJ2  = false;
 		tamX = 0;
-		
 		
 		controller = new GeometrixController(this,this);
 		

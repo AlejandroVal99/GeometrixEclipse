@@ -3,6 +3,7 @@ package view.spaceship;
 import java.util.ArrayList;
 import processing.core.PApplet;
 import processing.core.PImage;
+import processing.sound.SoundFile;
 import view.bullet.Bullet;
 
 public abstract class SpaceShip {
@@ -26,12 +27,13 @@ public abstract class SpaceShip {
 	protected float nextSuper;
 	protected PImage superShoot;
 	protected String type;
+	private SoundFile shootSound;
 	//variable disparo
 
 	// 0.08 caso default
 
 	public SpaceShip(boolean player, String nickName, PImage inGame, PImage inSelection, PApplet app, int vida,
-			PImage mybullet, PImage superShoot) {
+			PImage mybullet, PImage superShoot,SoundFile shootSound) {
 
 		this.player = player;
 		this.superShoot = superShoot;
@@ -41,6 +43,7 @@ public abstract class SpaceShip {
 		this.inSelect = inSelection;
 		this.nickName = nickName;
 		this.vida = vida;
+		this.shootSound = shootSound;
 		bullets = new ArrayList<Bullet>();
 		vidaTotal = vida;
 		posy = app.height / 2;
@@ -240,7 +243,7 @@ public abstract class SpaceShip {
 						app, dano);
 				bullets.add(bullet);
 				nextFire = fireRate;
-
+				shootSound.play();
 			}
 
 		}

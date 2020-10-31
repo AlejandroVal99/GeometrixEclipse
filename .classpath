@@ -3,6 +3,9 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="lib" path="src/core.jar"/>
 	<classpathentry exported="true" kind="lib" path="src/gson-2.8.6.jar"/>
+	<classpathentry kind="lib" path="src/sound.jar"/>
+	<classpathentry kind="lib" path="src/javamp3-1.0.4.jar"/>
+	<classpathentry kind="lib" path="src/jsyn-20171016.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
