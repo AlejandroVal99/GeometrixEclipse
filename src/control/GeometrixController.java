@@ -136,15 +136,14 @@ public class GeometrixController implements OnMessageListener {
 			float posXb =  player1.getShip().getBullets().get(p1).getPosx();
 			float posYb =  player1.getShip().getBullets().get(p1).getPosy();
 			float posXp2 = player2.getShip().getnPosx();
-			float posYp2 = player2.getShip().getnPosy()-35;
+			float posYp2 = player2.getShip().getnPosy()+35;
 			
-			if(PApplet.dist(posXb,posYb,posXp2,posYp2)<80) {
+			if(PApplet.dist(posXb,posYb,posXp2,posYp2)<60) {
 				
 				int danoBullet = player1.getShip().getBullets().get(p1).getDaño();
 				player2.getShip().setVida(danoBullet);
 				player1.getShip().getBullets().remove(p1);
 				Impact(false);
-				System.out.println("entré disparo");
 
 				
 			}
@@ -155,17 +154,16 @@ public class GeometrixController implements OnMessageListener {
 		
 		//Verification shoots player 2
 		for(int p2 = 0; p2<player2.getShip().getBullets().size();p2++) {
-			float posXb =  player2.getShip().getBullets().get(p2).getPosx();
+			float posXb =  player2.getShip().getBullets().get(p2).getPosx()+60;
 			float posYb =  player2.getShip().getBullets().get(p2).getPosy();
 			float posXp1 = player1.getShip().getnPosx();
-			float posYp1 = player1.getShip().getnPosy()-35;
-			if(PApplet.dist(posXb,posYb,posXp1,posYp1)<80) {
+			float posYp1 = player1.getShip().getnPosy()+35;
+			if(PApplet.dist(posXb,posYb,posXp1,posYp1)<60) {
 				
 				int danoBullet = player2.getShip().getBullets().get(p2).getDaño();
 				player1.getShip().setVida(danoBullet);
 				player2.getShip().getBullets().remove(p2);
 				Impact(true);
-				System.out.println("entré disparo 2 ");
 
 			}
 			

@@ -10,7 +10,7 @@ public class Diamondrox extends SpaceShip{
 			PImage mybullet, PImage superShoot,SoundFile shootSound) {
 		super(player, nickName, inGame, inSelection, app, vida, mybullet, superShoot,shootSound);
 		// TODO Auto-generated constructor stub
-		fireRate=1;
+		fireRate=2f;
 		superRate=5f;
 		dano=8;
 		danoSuper=25;

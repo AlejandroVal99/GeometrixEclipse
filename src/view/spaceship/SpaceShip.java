@@ -255,25 +255,54 @@ public abstract class SpaceShip {
 
 	public void newBullet(boolean superShoot) {
 
-		if (superShoot) {
-			if (nextSuper <= 0) {
-				Bullet superBullet = new Bullet(this.posx + inGame.width, this.posy + (inGame.height / 2),
-						this.superShoot, app, danoSuper);
-				bullets.add(superBullet);
-				nextSuper = superRate;
+		if(player) {
+			
+			
+			if (superShoot) {
+				if (nextSuper <= 0) {
+					Bullet superBullet = new Bullet(this.posx + inGame.width, this.posy + (inGame.height / 2),
+							this.superShoot, app, danoSuper);
+					bullets.add(superBullet);
+					nextSuper = superRate;
+				}
+			}
+
+			else {
+
+				if (nextFire <= 0) {
+					Bullet bullet = new Bullet(this.posx + inGame.width, this.posy + (inGame.height / 2), this.myBullet,
+							app, dano);
+					bullets.add(bullet);
+					nextFire = fireRate;
+					shootSound.play();
+				}
+
 			}
 		}
-
+		
 		else {
-
-			if (nextFire <= 0) {
-				Bullet bullet = new Bullet(this.posx + inGame.width, this.posy + (inGame.height / 2), this.myBullet,
-						app, dano);
-				bullets.add(bullet);
-				nextFire = fireRate;
-				shootSound.play();
+			
+			if (superShoot) {
+				if (nextSuper <= 0) {
+					Bullet superBullet = new Bullet(this.posx , this.posy + (inGame.height / 2),
+							this.superShoot, app, danoSuper);
+					bullets.add(superBullet);
+					nextSuper = superRate;
+				}
 			}
 
+			else {
+
+				if (nextFire <= 0) {
+					Bullet bullet = new Bullet(this.posx, this.posy + (inGame.height / 2), this.myBullet,
+							app, dano);
+					bullets.add(bullet);
+					nextFire = fireRate;
+					shootSound.play();
+				}
+
+			}
+			
 		}
 
 	}

@@ -1,3 +1,11 @@
-/main/
-/view/
+/communication/
 /control/
+/core.jar
+/events/
+/gson-2.8.6.jar
+/javamp3-1.0.4.jar
+/jsyn-20171016.jar
+/main/
+/model/
+/sound.jar
+/view/
